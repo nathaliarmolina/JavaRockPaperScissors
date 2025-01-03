@@ -37,7 +37,7 @@
 
 ## Try On!
 
-You can download the game here and run it on your computer. No need to install:
+You can download the game here and run it on your computer. No need to install the game if you have Java in your pc:
 
 ### Jar File
 https://github.com/nathaliarmolina/JavaRockPaperScissors/blob/main/JavaRockPaperScissors.jar
@@ -45,6 +45,8 @@ https://github.com/nathaliarmolina/JavaRockPaperScissors/blob/main/JavaRockPaper
 ### Exe File
 https://github.com/nathaliarmolina/JavaRockPaperScissors/blob/main/JavaRockPaperScissors.exe
 
+## Download Java
+https://www.java.com/pt-BR/download/manual.jsp
 
 
 
