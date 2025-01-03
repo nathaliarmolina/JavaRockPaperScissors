@@ -4,8 +4,6 @@
 // package
 package main;
 
-// libraries
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -62,7 +60,7 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 	JButton battleModeButton; // battle mode Button from modePanel
 	JButton restartButton; // restart game button from gameScreenPanel
 	JButton closeButton; // close game button from gameScreenPanel and endGamePanel
-	JButton endGameButton; // finish game and show result in infinite rounds mode
+	JButton endGameButton; // finish game and show result in infinity rounds mode
 	
 	
 	String p2moveIcon; // used to display Player 2 move icon
@@ -96,7 +94,7 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 	
 
 	
-	boolean infinite = false; // enable infinite turns
+	boolean infinity = false; // enable infinity turns
 	boolean isAlive = true; // flags is the game is running or ended
 	
 	int rand; // random number to hold p2Play
@@ -123,7 +121,6 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closing method
 		frame.setLayout(null); // no layout type
 		frame.setLocationRelativeTo(null); // centralize program
-		frame.setResizable(false);
 
 		setStart(); // calls setStart to go to startScreen Panel
 		frame.setVisible(true); // set visible after call the first panel
@@ -134,10 +131,12 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 	// draws images with label and image path as argument
 	public void drawImage(JLabel label, String path) {
 
-		ImageIcon img = new ImageIcon(getClass().getResource(path)); // get the resource and set it to ImageIcon
-		label.setIcon(img); // set icon from the label 
+            
+			ImageIcon img = new ImageIcon(getClass().getResource(path));
+			label.setIcon(img);
 
 	}
+	
 	
 	// set the startScreenPanel elements
 	public void setStart() {
@@ -161,14 +160,15 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 		// cover images settings
 		coverImgLabel = new JLabel(""); // create cover label
 		coverImgLabel.setBounds(125, 80, 500, 500); // set coordinates and size
-		startScreenPanel.add(coverImgLabel); // add cover image label to panel
+		startScreenPanel.add(coverImgLabel); // add title to panel
 				
 		// draws image cover from start Screen
 		drawImage(coverImgLabel, coverPath);
 
+				
 		// Play Button settings
 				
-		startButton = new JButton("START!"); // create startButton Button
+		startButton = new JButton("START!"); // create playButton Button
 		startButton.setBounds(300, 600, 150, 35); // set coordinates and size
 		startButton.setFont(fontMid); // set Font
 		startButton.setBackground(Color.orange); // set background color to orange
@@ -183,12 +183,13 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 	// game settings
 	public void setMode () {
 		
-		// turn off startScreen and endGamePanel
+		// turn off startScreen
 		startScreenPanel.setVisible(false);
+		
 		endGamePanel.setVisible(false);
 
 
-		// modePanel settings
+		// gameScreenPanel settings
 		modePanel = new JPanel(); // create mode game JPanel
 		modePanel.setSize(750,700); // set size
 		modePanel.setBackground(Color.black); // set background color
@@ -196,7 +197,7 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 		frame.add(modePanel); // add panel to frame
 		
 		
-		// title from modePanel 
+		// title from start screen settings  
 		txtModeTitle = new JLabel(" Game Settings "); // create Title
 		txtModeTitle.setForeground(color2); // set font color
 		txtModeTitle.setBounds(270, 20, 210, 45); // set coordinates and size
@@ -204,75 +205,73 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 		txtModeTitle.setBorder(color2Border); // set border
 		modePanel.add(txtModeTitle); // add title to panel
 		
-		// control image settings 
-		controlImg = new JLabel(""); // create control JLabel
+		// title from start screen settings  
+		controlImg = new JLabel(""); // create Title
 		controlImg.setBounds(285, 150, 180, 140); // set coordinates and size
-		modePanel.add(controlImg); // add controlImg to panel
+		modePanel.add(controlImg); // add title to panel
 		
 		drawImage(controlImg, controlPath);
+		//drawControl(controlImg, controlPath);
 		
-		// Number of Rounds Label settings  
+		// title from start screen settings  
 		txtNumRounds = new JLabel("Number of rounds"); // create Title
 		txtNumRounds.setForeground(Color.white); // set font color
 		txtNumRounds.setBounds(190, 100, 200, 35); // set coordinates and size
 		txtNumRounds.setFont(fontMid); // set Font
 		modePanel.add(txtNumRounds); // add title to panel
 		
-		// Combobox settings
-		String[] round = {"10", "15", "20", "25", "30", "40", "50", "Infinite"}; // dice options
+		String[] round = {"10", "15", "20", "25", "30", "40", "50", "Infinity"}; // dice options
 		numberOfRounds = new JComboBox<String>(round); // create JComboBox
 		numberOfRounds.setBounds(410, 100, 100, 35); // set coordinates and size
 		numberOfRounds.setBackground(Color.orange);
 		numberOfRounds.setFont(fontMid);
 		modePanel.add(numberOfRounds); // add comboSides to panel
 		
-		// Game Mode Label settings  
-		txtGameMode = new JLabel(" Game Mode "); // create JLabel
+		// title from start screen settings  
+		txtGameMode = new JLabel(" Game Mode "); // create Title
 		txtGameMode.setForeground(color2); // set font color
 		txtGameMode.setBounds(288, 320, 175, 45); // set coordinates and size
 		txtGameMode.setFont(fontMax); // set Font
 		txtGameMode.setBorder(color2Border); // set border
 		modePanel.add(txtGameMode); // add title to panel
 
-		// Friendly mode button settings
-		friendlyButton = new JButton("Friendly Mode"); // create friendlyButton
+		friendlyButton = new JButton("Friendly Mode"); // create playButton Button
 		friendlyButton.setBounds(250, 400, 250, 35); // set coordinates and size
 		friendlyButton.setFont(fontMid); // set Font
 		friendlyButton.setBackground(Color.orange); // set background color to orange
 		friendlyButton.setForeground(Color.black); // set font color to black
 		friendlyButton.addActionListener(this); // add playButton actionListener
-		modePanel.add(friendlyButton); // add friendlyButton to ModePanel
+		modePanel.add(friendlyButton); // add playButton to panel
 		
-		// explanation from Friendly Mode settings 
-		txtFriendly = new JLabel("Points earned are never lost"); // create phrase
+		// title from start screen settings  
+		txtFriendly = new JLabel("Points earned are never lost"); // create Title
 		txtFriendly.setForeground(Color.white); // set font color
 		txtFriendly.setBounds(230, 450, 650, 35); // set coordinates and size
 		txtFriendly.setFont(fontMid); // set Font
-		modePanel.add(txtFriendly); // add txtFriendly to modePanel
+		modePanel.add(txtFriendly); // add title to panel
 		
-		// Battle mode button settings
-		battleModeButton = new JButton("Battle Mode!"); // create battleButton 
+		battleModeButton = new JButton("Battle Mode!"); // create playButton Button
 		battleModeButton.setBounds(250, 500, 250, 35); // set coordinates and size
 		battleModeButton.setFont(fontMid); // set Font
 		battleModeButton.setBackground(Color.orange); // set background color to orange
 		battleModeButton.setForeground(Color.black); // set font color to black
 		battleModeButton.addActionListener(this); // add playButton actionListener
-		modePanel.add(battleModeButton); // add battleMode to modePanel
+		modePanel.add(battleModeButton); // add playButton to panel
 		
 		
-		// explanation 1 from Battle Mode settings
-		txtBattle1 = new JLabel("Points up for grabs!"); // create phrase
+		// title from start screen settings  
+		txtBattle1 = new JLabel("Points up for grabs!"); // create Title
 		txtBattle1.setForeground(Color.white); // set font color
 		txtBattle1.setBounds(275, 550, 800, 35); // set coordinates and size
 		txtBattle1.setFont(fontMid); // set Font
-		modePanel.add(txtBattle1); // add txtBattle1 to modePanel
+		modePanel.add(txtBattle1); // add title to panel
 		
-		// explanation 2 from Battle Mode settings
-		txtBattle2 = new JLabel("Wins score, losses deduct, and draws are a wash"); // create phrase
+		// title from start screen settings  
+		txtBattle2 = new JLabel("Wins score, losses deduct, and draws are a wash"); // create Title
 		txtBattle2.setForeground(Color.white); // set font color
 		txtBattle2.setBounds(125, 590, 800, 35); // set coordinates and size
 		txtBattle2.setFont(fontMid); // set Font
-		modePanel.add(txtBattle2); // add txtBattle2 to modePanel
+		modePanel.add(txtBattle2); // add title to panel
 	}
 	
 	// set GameScreen Panel
@@ -289,7 +288,7 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 		frame.add(gameScreenPanel); // add panel to frame
 		
 		// label "Make your move" settings
-		makeMoveLabel = new JLabel("Make your move!"); // create makeMove label
+		makeMoveLabel = new JLabel("Make your play!"); // create makeMove label
 		makeMoveLabel.setForeground(Color.cyan); // set font color
 		makeMoveLabel.setBounds(260, 20, 330, 35); // set coordinates and size
 		makeMoveLabel.setFont(fontMax); // set Font
@@ -319,29 +318,27 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 		// Player 2 move image - settings
 		p2PlayImg = new JLabel(""); // create P2 image
 		p2PlayImg.setBounds(300, 350, 150, 150); // set coordinates and size
-		gameScreenPanel.add(p2PlayImg); // add p2PlayImg to gameScreenpanel
+		gameScreenPanel.add(p2PlayImg); // add title to panel
 		
 		
 		// alert error - trying to play without choose a move
-		alert = new JLabel(""); // create alert clear
-		alert.setBounds(240, 190, 270, 150); // set coordinates and size
-		alert.setForeground(Color.red); // set font color
-		alert.setFont(fontMid); // set font
-		gameScreenPanel.add(alert); // add alert to gameScreenanel
+		alert = new JLabel(""); // create rock label
+		alert.setBounds(290, 190, 220, 150); // set coordinates and size
+		alert.setForeground(Color.red);
+		alert.setFont(fontMid);
+		gameScreenPanel.add(alert); // add title to panel
 		
-		// RestartButton settings
-		restartButton = new JButton("Restart"); // create and set text
+		restartButton = new JButton("Restart");
 		restartButton.setBounds(90, 590, 120, 35); // set coordinates and size
 		restartButton.setFont(fontMid); // set Font
 		restartButton.setBackground(Color.orange); // set background color to orange
 		restartButton.setForeground(Color.black); // set font color to black
 		restartButton.addActionListener(this); // add playButton actionListener
-		gameScreenPanel.add(restartButton); // add restartButton to gameScreenPanel
+		gameScreenPanel.add(restartButton); // add playButton to panel
 		
-		// only in infinite rounds, there's a end button where he can end game and see results
-		if (infinite) {
-		 
-			endGameButton = new JButton("End"); // create and set text
+		if (infinity) {
+		
+			endGameButton = new JButton("End");
 			endGameButton.setBounds(530, 590, 120, 35); // set coordinates and size
 			endGameButton.setFont(fontMid); // set Font
 			endGameButton.setBackground(Color.orange); // set background color to orange
@@ -351,9 +348,8 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 		
 		}
 		
-		// if it's not infinite rounds, there's a close button
 		else {
-			closeButton = new JButton("Close"); // create and set text
+			closeButton = new JButton("Close");
 			closeButton.setBounds(530, 590, 120, 35); // set coordinates and size
 			closeButton.setFont(fontMid); // set Font
 			closeButton.setBackground(Color.orange); // set background color to orange
@@ -362,7 +358,7 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 			gameScreenPanel.add(closeButton); // add playButton to panel
 		}
 		
-		// draw all images from Player 1
+		// draw all  images Player 1
 		drawImage(rockImgLabel, rockPath);
 		drawImage(paperImgLabel,paperPath);
 		drawImage(scissorsImgLabel, scissorsPath);
@@ -378,13 +374,13 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 		gameScreenPanel.add(playMoveButton); // add playMoveButton to panel
 		
 		// text label from Player 1 Play
-		txtMoveLabel = new JLabel(""); // create and set text
+		txtMoveLabel = new JLabel(""); // create Title
 		txtMoveLabel.setForeground(color2); // set font color
 		txtMoveLabel.setBounds(340, 250, 330, 35); // set coordinates and size
 		txtMoveLabel.setFont(fontMax); // set Font
 		gameScreenPanel.add(txtMoveLabel); // add title to panel
 		
-		// text label to indicate the result of the game (win, lose or draw)
+		// text label to indicate the result of the game (won, lose or draw)
 		gameStatusLabel = new JLabel(""); // create choose label
 		gameStatusLabel.setForeground(Color.cyan); // set font color
 		gameStatusLabel.setBounds(320, 540, 330, 35); // set coordinates and size
@@ -398,29 +394,28 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 		p1ScoreLabel.setFont(fontMid); // set Font
 		gameScreenPanel.add(p1ScoreLabel); // add title to panel
 		
-		//p2ScoreLabel
+		//p1ScoreLabel
 		p2ScoreLabel = new JLabel(" Player 2 Score: " + p2ScoreInt); // create p1Score label
 		p2ScoreLabel.setForeground(Color.green); // set font color
 		p2ScoreLabel.setBounds(500, 560, 330, 35); // set coordinates and size
 		p2ScoreLabel.setFont(fontMid); // set Font
 		gameScreenPanel.add(p2ScoreLabel); // add title to panel
 		
-		// rounds left label settings
+		// alert error - trying to play without choose a move
 		txtRoundsLeft = new JLabel("Rounds Left: " + roundsLeft); // create rock label
 		txtRoundsLeft.setBounds(290, 555, 220, 150); // set coordinates and size
 		txtRoundsLeft.setForeground(Color.white);
 		txtRoundsLeft.setFont(fontMid);
 		gameScreenPanel.add(txtRoundsLeft); // add title to panel
 		
-		// rounds played label settings
+		// alert error - trying to play without choose a move
 		txtRoundsPlayed = new JLabel("Rounds Played: " + rounds); // create rock label
 		txtRoundsPlayed.setBounds(290, 525, 220, 150); // set coordinates and size
 		txtRoundsPlayed.setForeground(Color.white);
 		txtRoundsPlayed.setFont(fontMid);
 		gameScreenPanel.add(txtRoundsPlayed); // add title to panel
 		
-		// if infinite mode is on, will not show label rounds left
-		if(infinite == true) {
+		if(infinity == true) {
 			txtRoundsLeft.setVisible(false);
 		}
 		
@@ -441,43 +436,38 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 			//make a random number for Player 2 move
 			rand = random.nextInt(3); 		
 			
-			// if the random number is 0, then Player 2 move is rock
+			
 			if (rand == 0) {
 				p2Play = "rock";
-				drawImage(p2PlayImg, rockPathP2); // draw Player 2 rock
+				drawImage(p2PlayImg, rockPathP2);
 			}
 			
-			// if the random number is 1, then Player 2 move is paper
 			if (rand == 1) {
 				p2Play = "paper";
-				drawImage(p2PlayImg, paperPathP2); // draw Player 2 paper
+				drawImage(p2PlayImg, paperPathP2);
 			}
 			
-			// if the random number is 2, then Player 2 move is scissors
 			if (rand == 2) {
 				p2Play = "scissors";
-				drawImage(p2PlayImg,scissorsPathP2); // draw Player 2 scissors
+				drawImage(p2PlayImg,scissorsPathP2);
 			}
 
 		
 			// Player 1 Wins
 			// P1 Rock && P2 Scissor or P1 Paper && P2 Rock or P1 Scissor && P2 Paper
 			if (p1Play.equals("rock") &&  p2Play.equals("scissors") || p1Play.equals("paper") && p2Play.equals("rock") || p1Play.equals("scissors") &&  p2Play.equals("paper")) {
-				gameStatusLabel.setText("You Win!"); // show status 
-				placeGameStatus(); // centralize text
+				gameStatusLabel.setText("You Won!");
+				placeGameStatus();
 				
-				// in battle mode, add 10 points for Player 1 and subtract 10 from Player 2
 				if (mode.equals("battle")) {
 					p1ScoreInt += 10;
 					p2ScoreInt -= 10;
 				}
 				
-				// in battle mode, add 10 points for Player 1
 				if (mode.equals("friendly")) {
 					p1ScoreInt += 10;
 				}
 				
-				// show score
 				p1ScoreLabel.setText("Player 1 Score: " + p1ScoreInt);
 				p2ScoreLabel.setText("Player 2 Score: " + p2ScoreInt);
 
@@ -490,21 +480,18 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 			// Player 1 Loses 
 			// P1 Rock && P2 Paper or P1 Paper && P2 Scissor or P1 Scissor && P2 Rock
 			if (p1Play.equals("rock") &&  p2Play.equals("paper") || p1Play.equals("paper") && p2Play.equals("scissors") || p1Play.equals("scissors") &&  p2Play.equals("rock")) {
-				gameStatusLabel.setText("You Lose!"); // show status
-				placeGameStatus(); // centralize text
+				gameStatusLabel.setText("You Lost!");
+				placeGameStatus();
 				
-				// in battle mode, subtract 10 points for Player 1 and add 10 from Player 2
 				if (mode.equals("battle")) {
 					p1ScoreInt -= 10;
 					p2ScoreInt += 10;
 				}
 				
-				// in battle mode, add 10 points for Player 2
 				if (mode.equals("friendly")) {
 					p2ScoreInt += 10;
 				}
 				
-				// show score
 				p1ScoreLabel.setText("Player 1 Score: " + p1ScoreInt);
 				p2ScoreLabel.setText("Player 2 Score: " + p2ScoreInt);
 
@@ -512,39 +499,38 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 		
 			//Draw
 			if (p1Play.equals("rock") &&  p2Play.equals("rock") || p1Play.equals("paper") && p2Play.equals("paper") || p1Play.equals("scissors") &&  p2Play.equals("scissors")) {
-				
-				gameStatusLabel.setText("Draw!"); // show status
-				placeGameStatus(); // centralize text
-				
-				// show score
+				gameStatusLabel.setText("Draw!");
+				placeGameStatus();
 				p1ScoreLabel.setText("Player 1 Score: " + p1ScoreInt);
 				p2ScoreLabel.setText("Player 2 Score: " + p2ScoreInt);
 				
 
 			}
 			
-			// add 1 round
 			rounds +=1;
 			
-			// if is not infinite mode, subtract 1 round from rounds left and show
-			if(infinite == false) {
+			
+			if(infinity == false) {
 				roundsLeft -=1;
-				txtRoundsLeft.setText("Rounds Left: " + roundsLeft);
-				if (roundsLeft == 0) { // if rounds left is over, call endGame()
+				if (roundsLeft == 0) {
 					endGame();
 
 				}
 			
 			}
 			
-			// if is infinite mode, set rounds left invisible
 			else {
 				txtRoundsLeft.setVisible(false);
 			}
 			
-			// show rounds played
 			txtRoundsPlayed.setText("Rounds Played: " + rounds);
+			
+			if (infinity == false) {
+				txtRoundsLeft.setText("Rounds Left: " + roundsLeft);
+			
+			}
 
+		
 		} // end if
 	
 	} // end p2MakePlay
@@ -552,45 +538,38 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 	// align gameStatus
 	public void placeGameStatus () {
 		
-		String status; // hold status to compare
-		status = gameStatusLabel.getText(); // get text from gameStatusLabel
+		String status;
+		status = gameStatusLabel.getText();
 		
-		// draw coordinates
 		if (status.equals("Draw!")); {
 			gameStatusLabel.setBounds(340, 540, 330, 35);
 			
 		}
 		
-		// win coordinates
-		if (status.equals("You Win!")) {
+		if (status.equals("You Won!")) {
 			gameStatusLabel.setBounds(315, 540, 330, 35);
 		}
 		
-		// lose coordinates
-		if (status.equals("You Lose!")) {
+		if (status.equals("You Lost!")) {
 			gameStatusLabel.setBounds(315, 540, 330, 35);
 		}
 	}
 		
-	// sets if Player 1 win, lose or draw game
 	public void setResult () {
 		
 		
-		resultImg = new JLabel(); // create JLabel
+		resultImg = new JLabel();
 		resultImg.setBounds(150, 80, 450, 450); // set coordinates and size
 		endGamePanel.add(resultImg); // add title to panel
 		
-		// if Player 1 score is bigger than Player 2 score is a win
 		if (p1ScoreInt > p2ScoreInt) {
 			drawImage(resultImg, victoryPath);
 		}
 		
-		// if Player 1 score is smaller than Player 2 score is a lose
 		if (p1ScoreInt < p2ScoreInt) {
 			drawImage(resultImg, losePath);
 		}
 		
-		// if Player 1 score and Player 2 score are equal, is a draw
 		if (p1ScoreInt == p2ScoreInt) {
 			drawImage(resultImg, drawPath);
 		}
@@ -601,41 +580,41 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 	public void endGame() {
 		
 		
-		gameScreenPanel.setVisible(false); // set gameScreenPanel invisible
+		gameScreenPanel.setVisible(false);
+		endGamePanel = new JPanel();
 		
 		endGamePanel.setSize(750,700); // set size
 		endGamePanel.setBackground(Color.black); // set background color
 		endGamePanel.setLayout(null); //no layout mode
 		frame.add(endGamePanel); // add panel to frame
-		setResult(); // call method setResult
+		setResult();
 
-		// Player 1 Score settings  
-		resultTxtP1 = new JLabel(" Player 1 Score:  " + p1ScoreInt); // create JLabel
+		// title from start screen settings  
+		resultTxtP1 = new JLabel(" Player 1 Score:  " + p1ScoreInt); // create Title
 		resultTxtP1.setForeground(color2); // set font color
 		resultTxtP1.setBounds(70, 25, 268, 45); // set coordinates and size
 		resultTxtP1.setBorder(color2Border); // set border
 		resultTxtP1.setFont(fontMax); // set Font
-		endGamePanel.add(resultTxtP1); // add resultTxtP1 to endGamePanel
+		endGamePanel.add(resultTxtP1); // add title to panel
 		
-		// Player 2 Score settings  
-		resultTxtP2 = new JLabel(" Player 2 Score:  " + p2ScoreInt); // create JLabel
+		// title from start screen settings  
+		resultTxtP2 = new JLabel(" Player 2 Score:  " + p2ScoreInt); // create Title
 		resultTxtP2.setForeground(Color.cyan); // set font color
 		resultTxtP2.setBounds(410, 25, 268, 45); // set coordinates and size
-		resultTxtP2.setBorder(cyanBorder2); // set border
+		resultTxtP2.setBorder(cyanBorder2);
 		resultTxtP2.setFont(fontMax); // set Font
-		endGamePanel.add(resultTxtP2); // add resultTxtP2 to endGamePanel
+		endGamePanel.add(resultTxtP2); // add title to panel
 		
-		// RestartButton settings
-		restartButton = new JButton("Restart Game"); // create and set text
+		restartButton = new JButton("Restart Game");
 		restartButton.setBounds(260, 550, 250, 35); // set coordinates and size
 		restartButton.setFont(fontMid); // set Font
 		restartButton.setBackground(Color.orange); // set background color to orange
 		restartButton.setForeground(Color.black); // set font color to black
 		restartButton.addActionListener(this); // add playButton actionListener
-		endGamePanel.add(restartButton); // add restartButton to endGamePanel
+		endGamePanel.add(restartButton); // add playButton to panel
 		
-		// Close Button settings
-		closeButton = new JButton("Close Game"); // create and set text
+		
+		closeButton = new JButton("Close Game");
 		closeButton.setBounds(260, 600, 250, 35); // set coordinates and size
 		closeButton.setFont(fontMid); // set Font
 		closeButton.setBackground(Color.orange); // set background color to orange
@@ -643,10 +622,8 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 		closeButton.addActionListener(this); // add playButton actionListener
 		endGamePanel.add(closeButton); // add playButton to panel
 		
-		// kills the game
 		isAlive = false;
 		
-		// enable endGamePanel
 		endGamePanel.setVisible(true);
 	}
 		
@@ -663,123 +640,107 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		// startButton Event (from startScreenPanel)
+		// playButton Event (from startScreenPanel)
 		if(e.getSource() == startButton) {
 			startScreenPanel.setVisible(false); // turn off startScreenPanel 
-				
-			setMode(); //set mode method
-			modePanel.setVisible(true); // calls modePanel	
-
+			
+			setMode();
+			modePanel.setVisible(true);			
+			
+			
 		} // end if
 		
-		
-		// friendlyButton events
+			
 		if(e.getSource() == friendlyButton) {
 			modePanel.setVisible(false); // turn off startScreenPanel 
 			
 			//get Selected Item from Combobox and set it to a string
 			String selectedItem = (String) numberOfRounds.getSelectedItem();
 			
-			// sets 10 rounds
 			if (selectedItem.equals("10")) {
 				roundsLeft = 10;
 			}
 			
-			// sets 15 rounds
 			if (selectedItem.equals("15")) {
 				roundsLeft = 15;
 			}
 			
-			// sets 20 rounds
 			if (selectedItem.equals("20")) {
 				roundsLeft = 20;
 			}
 			
-			// sets 25 rounds
 			if (selectedItem.equals("25")) {
 				roundsLeft = 25;
 			}
 			
-			// sets 30 rounds
 			if (selectedItem.equals("30")) {
 				roundsLeft = 30;
 			}
 			
-			// sets 40 rounds
 			if (selectedItem.equals("40")) {
 				roundsLeft = 40;
 			}
 			
-			// sets 50 rounds
 			if (selectedItem.equals("50")) {
 				roundsLeft = 40;
 			}
 			
-			// sets infinite rounds
-			if (selectedItem.equals("Infinite")) {
-				infinite = true;
+			if (selectedItem.equals("Infinity")) {
+				infinity = true;
 				
 			}
 			
-			// friendly mode settings, player 1 and player 2 starts with 0 points
 			mode = "friendly";
 			p1ScoreInt = 0;
 			p2ScoreInt = 0;
-			setGame(); // calls setGame
-			gameScreenPanel.setVisible(true); // turn gameScreenPanel visible	
+			setGame();
+			gameScreenPanel.setVisible(true);			
 
 			
 		}
 		
-		// battleButton events
 		if(e.getSource() == battleModeButton) {
 			modePanel.setVisible(false); // turn off startScreenPanel 
 			
 			//get Selected Item from Combobox and set it to a string
 			String selectedItem = (String) numberOfRounds.getSelectedItem();
 			
-			// sets 10 rounds
 			if (selectedItem.equals("10")) {
 				roundsLeft = 10;
 			}
 			
-			// sets 15 rounds
 			if (selectedItem.equals("15")) {
 				roundsLeft = 15;
 			}
 			
-			// sets 20 rounds
 			if (selectedItem.equals("20")) {
 				roundsLeft = 20;
 			}
 			
-			// sets 30 rounds
 			if (selectedItem.equals("30")) {
 				roundsLeft = 30;
 			}
 			
-			// sets 40 rounds
 			if (selectedItem.equals("40")) {
 				roundsLeft = 40;
 			}
 			
-			// sets 50 rounds
 			if (selectedItem.equals("50")) {
 				roundsLeft = 50;
 			}
 			
-			// sets infinite rounds
-			if (selectedItem.equals("Infinite")) {
-				infinite = true;
+			if (selectedItem.equals("Infinity")) {
+				infinity = true;
 			}
 			
-			// battleMode settings, players starts with 100 points each
 			mode = "battle";
 			p1ScoreInt = 100;
 			p2ScoreInt = 100;
-			setGame(); // calls setGame
-			gameScreenPanel.setVisible(true); // turn gameScreenPanel visible	
+			setGame();
+			gameScreenPanel.setVisible(true);	
+			
 
+			
 		}
 		
 		// playMoveButton event (from gameScreenPanel)
@@ -788,41 +749,44 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 			// if player 1 don't choose any move, show alert
 			if(p1Play.equals("")) { 
 			
-				alert.setText("Choose a hand movement!");	
+				alert.setText("Make your Move!");	
 			}
 			
-			p2MakePlay(); // calls p2MakePlay to do Player2 turn
+			p2MakePlay();
 						
 		} // end if
 		
-		// closeButton Event (from startScreenPanel)
+		// playButton Event (from startScreenPanel)
 		if(e.getSource() == closeButton) {
-			System.exit(0); // close program 
+			System.exit(0); // turn off startScreenPanel 
 
 					
 		} // end if
 		
-		// endGameButton Event from startScreenPanel / infinite mode
+		// playButton Event (from startScreenPanel)
 		if(e.getSource() == endGameButton) {
 			endGame();
-					
+
+							
 		} // end if
 		
-		// restartButton events
 		if(e.getSource() == restartButton) {
-			gameScreenPanel.setVisible(false); // set panel invisible
-			endGamePanel.setVisible(false); // set panel invisible
-			p1ScoreInt = 0; // sets player 1 score to 0
-			p2ScoreInt = 0; // sets player 2 score to 0
-			rounds = 0; // sets rounds to 0
-			roundsLeft = 0; // sets roundsLeft to 0
-			infinite = false; // set infinite to false
-			p1Play = ""; // clear Player 1 move
-			p2Play = ""; // clear Player 2 move
+			gameScreenPanel.setVisible(false);
+			endGamePanel.setVisible(false);
+			p1ScoreInt = 0;
+			p2ScoreInt = 0;
+			rounds = 0;
+			roundsLeft = 0;
+			infinity = false;
+			p1Play = "";
+			p2Play = "";
 			
-			setMode(); // call setMode and modePanel 		
-		} 
+			setMode();
 
+					
+		} 
+			
+	
 	} // end action Listener
 
 	// Mouse Listener to capture play by Player 1
