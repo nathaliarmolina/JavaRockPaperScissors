@@ -19,7 +19,8 @@
 
 ![image](https://github.com/user-attachments/assets/1006e7ab-c73b-4a29-8795-ed13e556f4ea)
 
-### The Player can choose to play a certain amount of rounds or just play infinitely! At the end of rounds, You will see if You Win, Lose or Draw the game
+### The Player can choose to play a certain amount of rounds or just play infinitely! At the end of rounds, You will see if You Win, Lose or Draw the game.
+### Choose between 10, 15, 20, 25, 30, 40, 50 or infinite rounds!
 ### (In infinite mode, you can stop the game whenever You want and see the game result).
 
 ### Win
