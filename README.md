@@ -1,7 +1,7 @@
 # JavaRockPaperScissors
 ## Get ready to rumble with Java Rock, Paper, Scissors game!
 
-### An authoral game made by nathaliarmolina with Java!
+### An authoral game made by me with Java!
 
 ![image](https://github.com/user-attachments/assets/5eabbe23-1ea6-40bd-baee-84ab68e21b63)
 
