@@ -35,6 +35,14 @@
 ### Draw
 ![image](https://github.com/user-attachments/assets/f7a4fb14-f4cb-46b6-809e-d27af2e9425e)
 
+## Try On!
+
+You can download the game here and run it on your computer:
+
+### Jar File
+https://github.com/nathaliarmolina/JavaRockPaperScissors/blob/main/JavaRockPaperScissors.jar
+
+### Exe File
 
 
 
