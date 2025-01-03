@@ -37,13 +37,13 @@
 
 ## Try On!
 
-You can download the game here and run it on your computer:
+You can download the game here and run it on your computer. No need to install:
 
 ### Jar File
 https://github.com/nathaliarmolina/JavaRockPaperScissors/blob/main/JavaRockPaperScissors.jar
 
 ### Exe File
-
+https://github.com/nathaliarmolina/JavaRockPaperScissors/blob/main/JavaRockPaperScissors.exe
 
 
 
