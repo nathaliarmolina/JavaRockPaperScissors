@@ -23,6 +23,7 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 	
 	JFrame frame; // Game Frame
 	
+	
 	JPanel startScreenPanel; // first Screen - title, cover and play button
 	JPanel gameScreenPanel; // third screen - game screen
 	JPanel modePanel; // second screen - game mode and round settings
@@ -119,6 +120,7 @@ public class JavaRockPaperScissors implements ActionListener, MouseListener {
 		frame.setSize(750, 700); // size
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closing method
 		frame.setLayout(null); // no layout type
+		frame.setResizable(false); // disable window resize
 		frame.setLocationRelativeTo(null); // centralizes program
 
 		setStart(); // calls setStart to go to startScreen Panel
